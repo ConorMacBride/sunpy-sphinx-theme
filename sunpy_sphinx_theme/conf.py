@@ -6,33 +6,33 @@ from sunpy_sphinx_theme import get_html_theme_path
 
 html_theme_path = get_html_theme_path()
 html_theme = "sunpy"
+html_css_files = [
+    "sunpy_style.css",
+]
 html_static_path = [os.path.join(html_theme_path[0], html_theme, "static")]
-html_extra_path = [os.path.join(html_theme_path[0], html_theme, "static", "img")]
-templates_path = [os.path.join(html_theme_path[0], html_theme, "templates")]
+html_extra_path = [os.path.join(
+    html_theme_path[0], html_theme, "static", "img")]
 html_favicon = os.path.join(html_static_path[0], "img", "favicon-32.ico")
-svg_icon = os.path.join(html_static_path[0], "img", "sunpy_icon.svg")
 png_icon = os.path.join(html_static_path[0], "img", "sunpy_icon_128x128.png")
+html_logo = png_icon
+svg_icon = os.path.join(html_static_path[0], "img", "sunpy_icon.svg")
+templates_path = [os.path.join(html_theme_path[0], html_theme, "templates")]
 
-on_rtd = os.environ.get("READTHEDOCS", False) == "True"
-
-if on_rtd:
-    sunpy_website_url_base = "https://sunpy.org"
-else:
-    sunpy_website_url_base = socket.gethostname()
+sunpy_website_url_base = socket.gethostname()
+on_rtd = os.environ.get("READTHEDOCS") == "True"
 
 
 def page_url(page):
     return urljoin(sunpy_website_url_base, page)
 
 
-html_sidebars = {
-    "**": ["docsidebar.html"],
-}
+html_sidebars = {"**": ["search-field.html",
+                        "sidebar-nav-bs.html", "sidebar-ethical-ads.html"]}
 
 html_theme_options = {
     "page_toctree_depths": {"generated/gallery": 2},
     "on_rtd": on_rtd,
-    "navbar_links": [
+    "external_links": [
         (
             "About",
             [
@@ -59,9 +59,12 @@ html_theme_options = {
                 ("aiapy", "https://aiapy.readthedocs.io/en/stable/", 1),
                 ("pfsspy", "https://pfsspy.readthedocs.io/en/stable/", 1),
                 ("sunraster", "https://docs.sunpy.org/projects/sunraster/en/stable/", 1),
-                ("sunkit-instruments", "https://docs.sunpy.org/projects/sunkit-instruments/en/stable/", 1),
-                ("sunkit-image", "https://docs.sunpy.org/projects/sunkit-image/en/stable/", 1),
-                ("radiospectra", "https://docs.sunpy.org/projects/radiospectra/en/stable/", 1),
+                ("sunkit-instruments",
+                 "https://docs.sunpy.org/projects/sunkit-instruments/en/stable/", 1),
+                ("sunkit-image",
+                 "https://docs.sunpy.org/projects/sunkit-image/en/stable/", 1),
+                ("radiospectra",
+                 "https://docs.sunpy.org/projects/radiospectra/en/stable/", 1),
                 ("pyflct", "https://pyflct.readthedocs.io/en/stable/", 1),
                 ("ablog", "https://ablog.readthedocs.io/", 1),
             ],

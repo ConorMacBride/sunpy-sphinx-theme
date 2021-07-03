@@ -20,7 +20,7 @@ You should be able to replace the entries in your project's `conf.py`.
 This should override the URL for the code of conduct.
 
 ```python
-html_theme_option["navbar_links"][0][-1][1] = NEW_URL
+html_theme_option["external_links"][0][-1][1] = NEW_URL
 ```
 
 ## Sidebar

@@ -1,0 +1,43 @@
+<div class="container-xl">
+
+  <div id="navbar-start">
+    {% for navbar_item in theme_navbar_start %}
+    {% include navbar_item %}
+    {% endfor %}
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  {% set navbar_class, navbar_align = navbar_align_class() %}
+  <div id="navbar-collapsible" class="{{ navbar_class }} collapse navbar-collapse">
+    <div id="navbar-center" class="{{ navbar_align }}">
+      {% if theme_external_links %}
+      {%- for navlink in theme_external_links %}
+      {% if navlink[1] is not string %}
+      <li class="dropdown">
+        <a role="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ navlink[0] }}<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          {%- for link in navlink[1] %}
+          <li class="dropdown-item">
+            <a href="{{ pathto(*link[1:]) }}">{{ link[0] }}</a></li>
+          {%- endfor %}
+        </ul>
+      </li>
+      {% else %}
+      <li><a href="{{ pathto(*navlink[1:]) }}">{{ navlink[0] }}</a></li>
+      {% endif %}
+      {%- endfor %}
+      {% endif %}
+    </div>
+
+    <div id="navbar-end">
+      {% for navbar_item in theme_navbar_end %}
+      <div class="navbar-end-item">
+        {% include navbar_item %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
